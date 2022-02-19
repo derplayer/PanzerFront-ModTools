@@ -1,4 +1,5 @@
 ﻿//using ShenmueDKSharp.Files.Models._NTD;
+using ShenmueDKSharp.Files.Images;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -130,10 +131,16 @@ namespace ShenmueDKSharp.Files.Models
                     //uvs += "vt " + ux1.ToString() + " " + uy1.ToString() + "\n";
                     //uvs += "vt " + ux2.ToString() + " " + uy2.ToString() + "\n";
                     //uvs += "vt " + ux3.ToString() + " " + uy3.ToString() + "\n";
-                    Vector2 uv0 = new Vector2(ux0, uy0);
-                    Vector2 uv1 = new Vector2(ux1, uy1);
-                    Vector2 uv2 = new Vector2(ux2, uy2);
-                    Vector2 uv3 = new Vector2(ux3, uy3);
+
+                    //Vector2 uv0 = new Vector2(ux0, uy0);
+                    //Vector2 uv1 = new Vector2(ux1, uy1);
+                    //Vector2 uv2 = new Vector2(ux2, uy2);
+                    //Vector2 uv3 = new Vector2(ux3, uy3);
+
+                    Vector2 uv0 = new Vector2(ux0, 1.0f - uy0);
+                    Vector2 uv1 = new Vector2(ux1, 1.0f - uy1);
+                    Vector2 uv2 = new Vector2(ux2, 1.0f - uy2);
+                    Vector2 uv3 = new Vector2(ux3, 1.0f - uy3);
 
                     PartNode.VertexUVs.Add(uv0);
                     PartNode.VertexUVs.Add(uv1);
@@ -141,12 +148,12 @@ namespace ShenmueDKSharp.Files.Models
                     PartNode.VertexUVs.Add(uv3);
                 }
 
+                PartNode.Parent = RootNode;
                 RootNode.Children.Add(PartNode);
+
                 //obj += "mtllib MAT_" + fdir + ".mtl\n" + vert + uvs + "usemtl MAT_" + fdir + "\n" + face;
                 //File.WriteAllText(dc + fdir + Path.DirectorySeparatorChar + "PART_" + i.ToString("D3") + ".obj", obj);
             }
-            RootNode.ResolveFaceTextures(Textures);
-            RootNode.GenerateTree(null);
 
             //mtl += "#Export from PZ Tool\n" +
             //            "newmtl MAT_" + fdir + "\n" +
@@ -154,6 +161,19 @@ namespace ShenmueDKSharp.Files.Models
             //mtl += "map_Kd " + fdir + ".bmp";
             //File.WriteAllText(dc + fdir + Path.DirectorySeparatorChar + "MAT_" + fdir + ".mtl", mtl);
             //getDCTexture(filepath);
+
+            //Add PVR Texture
+            Texture tex = new Texture();
+            string pvrTextPath = Path.ChangeExtension(this.FilePath, "pvr");
+            tex.Image = new PVRT(pvrTextPath);
+
+            Textures.Add(tex);
+            RootNode.ResolveFaceTextures(Textures);
+
+            //Camera visual stuff
+            RootNode.Rotation.Y = 270;
+            RootNode.Rotation.Z = 180;
+            RootNode.Center.Z += 100;
         }
 
         protected override void _Write(BinaryWriter writer)

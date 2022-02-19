@@ -34,7 +34,7 @@ namespace PZFModelEditor
         public ModelEditor()
         {
             InitializeComponent();
-            comboBox_RenderMode.SelectedIndex = 0;
+            comboBox_RenderMode.SelectedIndex = 1;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,7 +134,7 @@ namespace PZFModelEditor
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "MT5 file (*.mt5)|*.mt5|MT7 file (*.mt7)|*.mt7";
+            saveFileDialog.Filter = "NTD file (*.ntd)|*.ntd";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {

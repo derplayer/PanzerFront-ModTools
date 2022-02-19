@@ -155,9 +155,15 @@ namespace ShenmueDKSharp.Files.Models
         {
             List<ModelNode> result = new List<ModelNode>();
             result.Add(this);
-            if (Child != null && includeChildren)
+            if (includeChildren)
             {
-                result.AddRange(Child.GetAllNodes());
+                //HACK: Panzer Front hack
+                foreach (var child in Children)
+                {
+                    result.Add(child);
+                }
+
+                //result.AddRange(Child.GetAllNodes());
             }
             if (Sibling != null && includeSibling)
             {
