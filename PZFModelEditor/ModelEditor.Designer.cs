@@ -35,16 +35,10 @@
             this.treeView_MeshNodes = new System.Windows.Forms.TreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.nodeControl = new PZFModelEditor.Controls.NodeControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage_MT5 = new System.Windows.Forms.TabPage();
-            this.mt5Control = new PZFModelEditor.Controls.MT5Control();
-            this.tabPage_MT7 = new System.Windows.Forms.TabPage();
-            this.mt7Control = new PZFModelEditor.Controls.MT7Control();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.listBox_Textures = new System.Windows.Forms.ListBox();
-            this.textureControl = new PZFModelEditor.Controls.TextureControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.comboBox_RenderMode = new System.Windows.Forms.ComboBox();
@@ -55,7 +49,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown_ZFar = new System.Windows.Forms.NumericUpDown();
-            this.view3D = new PZFModelEditor.Controls.View3D.View3D();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +60,9 @@
             this.convertToMT5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.addTextureToDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nodeControl = new PZFModelEditor.Controls.NodeControl();
+            this.textureControl = new PZFModelEditor.Controls.TextureControl();
+            this.view3D = new PZFModelEditor.Controls.View3D.View3D();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -82,8 +78,6 @@
             this.splitContainer1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage_MT5.SuspendLayout();
-            this.tabPage_MT7.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
@@ -174,8 +168,6 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage_MT5);
-            this.tabControl1.Controls.Add(this.tabPage_MT7);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -194,16 +186,6 @@
             this.tabPage1.Text = "Node";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // nodeControl
-            // 
-            this.nodeControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nodeControl.Location = new System.Drawing.Point(3, 3);
-            this.nodeControl.MinimumSize = new System.Drawing.Size(310, 200);
-            this.nodeControl.Name = "nodeControl";
-            this.nodeControl.Size = new System.Drawing.Size(349, 200);
-            this.nodeControl.TabIndex = 0;
-            this.nodeControl.OnNodeChanged += new System.EventHandler(this.nodeControl_OnNodeChanged);
-            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -213,45 +195,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Faces";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage_MT5
-            // 
-            this.tabPage_MT5.Controls.Add(this.mt5Control);
-            this.tabPage_MT5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_MT5.Name = "tabPage_MT5";
-            this.tabPage_MT5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_MT5.Size = new System.Drawing.Size(355, 205);
-            this.tabPage_MT5.TabIndex = 2;
-            this.tabPage_MT5.Text = "MT5";
-            this.tabPage_MT5.UseVisualStyleBackColor = true;
-            // 
-            // mt5Control
-            // 
-            this.mt5Control.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mt5Control.Location = new System.Drawing.Point(3, 3);
-            this.mt5Control.Name = "mt5Control";
-            this.mt5Control.Size = new System.Drawing.Size(349, 199);
-            this.mt5Control.TabIndex = 0;
-            this.mt5Control.OnSelectedVertexChanged += new System.EventHandler<ShenmueDKSharp.Files.Models.Vertex>(this.mt5Control_OnSelectedVertexChanged);
-            // 
-            // tabPage_MT7
-            // 
-            this.tabPage_MT7.Controls.Add(this.mt7Control);
-            this.tabPage_MT7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_MT7.Name = "tabPage_MT7";
-            this.tabPage_MT7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_MT7.Size = new System.Drawing.Size(355, 205);
-            this.tabPage_MT7.TabIndex = 3;
-            this.tabPage_MT7.Text = "MT7";
-            this.tabPage_MT7.UseVisualStyleBackColor = true;
-            // 
-            // mt7Control
-            // 
-            this.mt7Control.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mt7Control.Location = new System.Drawing.Point(3, 3);
-            this.mt7Control.Name = "mt7Control";
-            this.mt7Control.Size = new System.Drawing.Size(349, 199);
-            this.mt7Control.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -290,16 +233,6 @@
             this.listBox_Textures.Size = new System.Drawing.Size(182, 227);
             this.listBox_Textures.TabIndex = 0;
             this.listBox_Textures.SelectedIndexChanged += new System.EventHandler(this.listBox_Textures_SelectedIndexChanged);
-            // 
-            // textureControl
-            // 
-            this.textureControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textureControl.Location = new System.Drawing.Point(0, 0);
-            this.textureControl.MinimumSize = new System.Drawing.Size(301, 266);
-            this.textureControl.Name = "textureControl";
-            this.textureControl.Size = new System.Drawing.Size(363, 266);
-            this.textureControl.TabIndex = 0;
-            this.textureControl.OnTextureChanged += new System.EventHandler(this.textureControl_OnTextureChanged);
             // 
             // groupBox3
             // 
@@ -444,18 +377,6 @@
             0});
             this.numericUpDown_ZFar.ValueChanged += new System.EventHandler(this.numericUpDown_ZFar_ValueChanged);
             // 
-            // view3D
-            // 
-            this.view3D.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.view3D.BackColor = System.Drawing.Color.Black;
-            this.view3D.Location = new System.Drawing.Point(3, 50);
-            this.view3D.Name = "view3D";
-            this.view3D.Size = new System.Drawing.Size(398, 447);
-            this.view3D.TabIndex = 0;
-            this.view3D.VSync = false;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -541,6 +462,38 @@
             this.addTextureToDatabaseToolStripMenuItem.Text = "Add texture to database...";
             this.addTextureToDatabaseToolStripMenuItem.Click += new System.EventHandler(this.addTextureToDatabaseToolStripMenuItem_Click);
             // 
+            // nodeControl
+            // 
+            this.nodeControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nodeControl.Location = new System.Drawing.Point(3, 3);
+            this.nodeControl.MinimumSize = new System.Drawing.Size(310, 200);
+            this.nodeControl.Name = "nodeControl";
+            this.nodeControl.Size = new System.Drawing.Size(349, 200);
+            this.nodeControl.TabIndex = 0;
+            this.nodeControl.OnNodeChanged += new System.EventHandler(this.nodeControl_OnNodeChanged);
+            // 
+            // textureControl
+            // 
+            this.textureControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textureControl.Location = new System.Drawing.Point(0, 0);
+            this.textureControl.MinimumSize = new System.Drawing.Size(301, 266);
+            this.textureControl.Name = "textureControl";
+            this.textureControl.Size = new System.Drawing.Size(363, 266);
+            this.textureControl.TabIndex = 0;
+            this.textureControl.OnTextureChanged += new System.EventHandler(this.textureControl_OnTextureChanged);
+            // 
+            // view3D
+            // 
+            this.view3D.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.view3D.BackColor = System.Drawing.Color.Black;
+            this.view3D.Location = new System.Drawing.Point(3, 50);
+            this.view3D.Name = "view3D";
+            this.view3D.Size = new System.Drawing.Size(398, 447);
+            this.view3D.TabIndex = 0;
+            this.view3D.VSync = false;
+            // 
             // ModelEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -550,7 +503,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ModelEditor";
-            this.Text = "Shenmue Model Editor";
+            this.Text = "Panzer Front Model Editor";
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -566,8 +519,6 @@
             this.splitContainer1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage_MT5.ResumeLayout(false);
-            this.tabPage_MT7.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
@@ -619,10 +570,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private Controls.NodeControl nodeControl;
         private Controls.TextureControl textureControl;
-        private System.Windows.Forms.TabPage tabPage_MT5;
-        private System.Windows.Forms.TabPage tabPage_MT7;
-        private Controls.MT5Control mt5Control;
-        private Controls.MT7Control mt7Control;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem convertToMT5ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;

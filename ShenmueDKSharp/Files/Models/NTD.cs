@@ -47,22 +47,7 @@ namespace ShenmueDKSharp.Files.Models
             RootNode = new ModelNode();
             RootNode.HasMesh = true;
             RootNode.ID = 0;
-
-            //string fdir = Path.GetFileNameWithoutExtension(filepath);
             int tFactor = 10000;
-            string dc = "DC_models" + Path.DirectorySeparatorChar;
-            string obj = "#Export from PZ Tool\n";
-            string vert = "";
-            string face = "";
-            string uvs = "";
-            string mtl = "";
-
-            //MeshFace currentFace = null;
-
-            //if (!Directory.Exists(dc + fdir))
-            //{
-            //    Directory.CreateDirectory(dc + fdir);
-            //}
 
             ModelVersion = reader.ReadInt16(); //model ver
             PartCount = reader.ReadUInt16();
@@ -72,10 +57,6 @@ namespace ShenmueDKSharp.Files.Models
                 ModelNode PartNode = new ModelNode();
                 PartNode.ID = i;
 
-                obj = "#Export from PZ Tool\no PART_" + i.ToString("D3") + "\n";
-                vert = "";
-                face = "";
-                uvs = "";
                 int c = 1;
                 uint blockCount = reader.ReadUInt32();
                 if (blockCount == 0) break;
@@ -88,19 +69,12 @@ namespace ShenmueDKSharp.Files.Models
                         float x = (float)(reader.ReadInt16() << 8) / tFactor;
                         float y = (float)(reader.ReadInt16() << 8) / tFactor;
                         float z = (float)(reader.ReadInt16() << 8) / tFactor;
-                        //vert += "v " + x.ToString() + " " + y.ToString() + " " + z.ToString() + "\n";
+
                         Vector3 vertex = new Vector3(x, y, z);
                         PartNode.VertexPositions.Add(vertex);
                     }
 
                     MeshFace currentFace = new MeshFace();
-
-                    //face += "f "
-                    //    + (c).ToString() + "/" + (c).ToString()
-                    //    + " " + (c + 2).ToString() + "/" + (c + 2).ToString()
-                    //    + " " + (c + 3).ToString() + "/" + (c + 3).ToString()
-                    //    + " " + (c + 1).ToString() + "/" + (c + 1).ToString() + "\n";
-                    //c += 4;
 
                     currentFace.PositionIndices.Add((ushort)(c - 1));
                     currentFace.UVIndices.Add((ushort)(c - 1));
@@ -127,16 +101,13 @@ namespace ShenmueDKSharp.Files.Models
                     float uy2 = 1f - (float)reader.ReadByte() / (256 - 1);
                     float uy3 = 1f - (float)reader.ReadByte() / (256 - 1);
 
-                    //uvs += "vt " + ux0.ToString() + " " + uy0.ToString() + "\n";
-                    //uvs += "vt " + ux1.ToString() + " " + uy1.ToString() + "\n";
-                    //uvs += "vt " + ux2.ToString() + " " + uy2.ToString() + "\n";
-                    //uvs += "vt " + ux3.ToString() + " " + uy3.ToString() + "\n";
-
+                    // Normal UV
                     //Vector2 uv0 = new Vector2(ux0, uy0);
                     //Vector2 uv1 = new Vector2(ux1, uy1);
                     //Vector2 uv2 = new Vector2(ux2, uy2);
                     //Vector2 uv3 = new Vector2(ux3, uy3);
 
+                    // Y-Flip UV
                     Vector2 uv0 = new Vector2(ux0, 1.0f - uy0);
                     Vector2 uv1 = new Vector2(ux1, 1.0f - uy1);
                     Vector2 uv2 = new Vector2(ux2, 1.0f - uy2);
@@ -150,17 +121,7 @@ namespace ShenmueDKSharp.Files.Models
 
                 PartNode.Parent = RootNode;
                 RootNode.Children.Add(PartNode);
-
-                //obj += "mtllib MAT_" + fdir + ".mtl\n" + vert + uvs + "usemtl MAT_" + fdir + "\n" + face;
-                //File.WriteAllText(dc + fdir + Path.DirectorySeparatorChar + "PART_" + i.ToString("D3") + ".obj", obj);
             }
-
-            //mtl += "#Export from PZ Tool\n" +
-            //            "newmtl MAT_" + fdir + "\n" +
-            //            "Ns 225.000000\nKa 1.000000 1.000000 1.000000\nKd 0.800000 0.800000 0.800000\nKs 0.000000 0.000000 0.000000\nKe 0.000000 0.000000 0.000000\nNi 1.450000\nd 1.000000\nillum 1\n";
-            //mtl += "map_Kd " + fdir + ".bmp";
-            //File.WriteAllText(dc + fdir + Path.DirectorySeparatorChar + "MAT_" + fdir + ".mtl", mtl);
-            //getDCTexture(filepath);
 
             //Add PVR Texture
             Texture tex = new Texture();

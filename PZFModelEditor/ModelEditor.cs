@@ -108,16 +108,16 @@ namespace PZFModelEditor
                 }
             }
 
-            if (m_modelType == ModelType.MT5)
-            {
-                mt5Control.Enabled = true;
-                mt7Control.Enabled = false;
-            }
-            if (m_modelType == ModelType.MT7)
-            {
-                mt5Control.Enabled = false;
-                mt7Control.Enabled = true;
-            }
+            //if (m_modelType == ModelType.MT5)
+            //{
+            //    mt5Control.Enabled = true;
+            //    mt7Control.Enabled = false;
+            //}
+            //if (m_modelType == ModelType.MT7)
+            //{
+            //    mt5Control.Enabled = false;
+            //    mt7Control.Enabled = true;
+            //}
         }
 
         private void GenerateTree(TreeNode treeNode, ModelNode modelNode)
@@ -179,14 +179,14 @@ namespace PZFModelEditor
             view3D.SetModelNode((ModelNode)node.Tag, m_primitiveType);
             nodeControl.SetNode((ModelNode)node.Tag);
 
-            if (m_modelType == ModelType.MT5 && typeof(MT5Node).IsAssignableFrom(node.Tag.GetType()))
-            {
-                mt5Control.SetMT5Node((MT5Node)node.Tag);
-            }
-            if (m_modelType == ModelType.MT7 && typeof(MT7Node).IsAssignableFrom(node.Tag.GetType()))
-            {
-                mt7Control.SetMT7Node((MT7Node)node.Tag);
-            }
+            //if (m_modelType == ModelType.MT5 && typeof(MT5Node).IsAssignableFrom(node.Tag.GetType()))
+            //{
+            //    mt5Control.SetMT5Node((MT5Node)node.Tag);
+            //}
+            //if (m_modelType == ModelType.MT7 && typeof(MT7Node).IsAssignableFrom(node.Tag.GetType()))
+            //{
+            //    mt7Control.SetMT7Node((MT7Node)node.Tag);
+            //}
         }
 
         private void nodeControl_OnNodeChanged(object sender, EventArgs e)
