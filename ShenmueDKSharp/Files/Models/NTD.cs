@@ -75,6 +75,7 @@ namespace ShenmueDKSharp.Files.Models
                     }
 
                     MeshFace currentFace = new MeshFace();
+                    currentFace.Type = MeshFace.PrimitiveType.Quads;
 
                     currentFace.PositionIndices.Add((ushort)(c - 1));
                     currentFace.UVIndices.Add((ushort)(c - 1));
