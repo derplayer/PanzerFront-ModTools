@@ -36,6 +36,11 @@ namespace ShenmueDKSharp.Files.Models
         {
             Read(reader);
         }
+        public OBJ(ModelNode node, Texture tex)
+        {
+            this.RootNode = node;
+            this.Textures.Add(tex);
+        }
 
         protected override void _Read(BinaryReader reader)
         {
@@ -111,6 +116,7 @@ namespace ShenmueDKSharp.Files.Models
                 }
                 else if (line.StartsWith("f "))
                 {
+                    bool quadMode = false;
                     if (currentFace == null) continue;
 
                     if (line.Contains("//"))
@@ -119,6 +125,7 @@ namespace ShenmueDKSharp.Files.Models
 
                         string[] values = line.Split(' ');
                         if (values.Length < 4) continue;
+                        if (values.Length == 5) quadMode = true;
 
                         string[] vert1Values = values[1].Split(stringSeparators, StringSplitOptions.None);
                         string[] vert2Values = values[2].Split(stringSeparators, StringSplitOptions.None);
@@ -130,6 +137,15 @@ namespace ShenmueDKSharp.Files.Models
                         currentFace.NormalIndices.Add((ushort)(int.Parse(vert2Values[1]) - 1));
                         currentFace.PositionIndices.Add((ushort)(int.Parse(vert3Values[0]) - 1));
                         currentFace.NormalIndices.Add((ushort)(int.Parse(vert3Values[1]) - 1));
+
+                        if (quadMode)
+                        {
+                            string[] vert4Values = values[4].Split(stringSeparators, StringSplitOptions.None);
+
+                            currentFace.PositionIndices.Add((ushort)(int.Parse(vert4Values[0]) - 1));
+                            currentFace.NormalIndices.Add((ushort)(int.Parse(vert4Values[1]) - 1));
+                        }
+
                     }
                     else if(line.Contains("/"))
                     {
@@ -137,6 +153,7 @@ namespace ShenmueDKSharp.Files.Models
 
                         string[] values = line.Split(' ');
                         if (values.Length < 4) continue;
+                        if (values.Length == 5) quadMode = true;
 
                         string[] vert1Values = values[1].Split(stringSeparators, StringSplitOptions.None);
                         string[] vert2Values = values[2].Split(stringSeparators, StringSplitOptions.None);
@@ -159,15 +176,30 @@ namespace ShenmueDKSharp.Files.Models
                         if (vert3Values.Length > 2) {
                             currentFace.NormalIndices.Add((ushort)(int.Parse(vert3Values[2]) - 1));
                         }
+
+                        if (quadMode)
+                        {
+                            string[] vert4Values = values[4].Split(stringSeparators, StringSplitOptions.None);
+
+                            currentFace.PositionIndices.Add((ushort)(int.Parse(vert4Values[0]) - 1));
+                            currentFace.UVIndices.Add((ushort)(int.Parse(vert4Values[1]) - 1));
+                            if (vert4Values.Length > 2)
+                            {
+                                currentFace.NormalIndices.Add((ushort)(int.Parse(vert4Values[2]) - 1));
+                            }
+                        }
+
                     }
                     else
                     {
                         string[] values = line.Split(' ');
                         if (values.Length < 4) continue;
+                        if (values.Length == 5) quadMode = true;
 
                         currentFace.PositionIndices.Add((ushort)(int.Parse(values[0]) - 1));
                         currentFace.PositionIndices.Add((ushort)(int.Parse(values[1]) - 1));
                         currentFace.PositionIndices.Add((ushort)(int.Parse(values[2]) - 1));
+                        if(quadMode) currentFace.PositionIndices.Add((ushort)(int.Parse(values[3]) - 1));
                     }
                 }
                 else if (line.StartsWith("usemtl "))

@@ -35,10 +35,12 @@
             this.treeView_MeshNodes = new System.Windows.Forms.TreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.nodeControl = new PZFModelEditor.Controls.NodeControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.listBox_Textures = new System.Windows.Forms.ListBox();
+            this.textureControl = new PZFModelEditor.Controls.TextureControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.comboBox_RenderMode = new System.Windows.Forms.ComboBox();
@@ -49,6 +51,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown_ZFar = new System.Windows.Forms.NumericUpDown();
+            this.view3D = new PZFModelEditor.Controls.View3D.View3D();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,9 +63,6 @@
             this.convertToMT5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.addTextureToDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nodeControl = new PZFModelEditor.Controls.NodeControl();
-            this.textureControl = new PZFModelEditor.Controls.TextureControl();
-            this.view3D = new PZFModelEditor.Controls.View3D.View3D();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -186,6 +186,16 @@
             this.tabPage1.Text = "Node";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // nodeControl
+            // 
+            this.nodeControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nodeControl.Location = new System.Drawing.Point(3, 3);
+            this.nodeControl.MinimumSize = new System.Drawing.Size(310, 200);
+            this.nodeControl.Name = "nodeControl";
+            this.nodeControl.Size = new System.Drawing.Size(349, 200);
+            this.nodeControl.TabIndex = 0;
+            this.nodeControl.OnNodeChanged += new System.EventHandler(this.nodeControl_OnNodeChanged);
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -233,6 +243,16 @@
             this.listBox_Textures.Size = new System.Drawing.Size(182, 227);
             this.listBox_Textures.TabIndex = 0;
             this.listBox_Textures.SelectedIndexChanged += new System.EventHandler(this.listBox_Textures_SelectedIndexChanged);
+            // 
+            // textureControl
+            // 
+            this.textureControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textureControl.Location = new System.Drawing.Point(0, 0);
+            this.textureControl.MinimumSize = new System.Drawing.Size(301, 266);
+            this.textureControl.Name = "textureControl";
+            this.textureControl.Size = new System.Drawing.Size(363, 266);
+            this.textureControl.TabIndex = 0;
+            this.textureControl.OnTextureChanged += new System.EventHandler(this.textureControl_OnTextureChanged);
             // 
             // groupBox3
             // 
@@ -377,6 +397,18 @@
             0});
             this.numericUpDown_ZFar.ValueChanged += new System.EventHandler(this.numericUpDown_ZFar_ValueChanged);
             // 
+            // view3D
+            // 
+            this.view3D.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.view3D.BackColor = System.Drawing.Color.Black;
+            this.view3D.Location = new System.Drawing.Point(3, 50);
+            this.view3D.Name = "view3D";
+            this.view3D.Size = new System.Drawing.Size(398, 447);
+            this.view3D.TabIndex = 0;
+            this.view3D.VSync = false;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -403,33 +435,33 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportToolStripMenuItem.Text = "Export...";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(120, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // cHRTToolStripMenuItem
             // 
             this.cHRTToolStripMenuItem.Name = "cHRTToolStripMenuItem";
-            this.cHRTToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.cHRTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cHRTToolStripMenuItem.Text = "CHRT...";
             this.cHRTToolStripMenuItem.Click += new System.EventHandler(this.cHRTToolStripMenuItem_Click);
             // 
@@ -461,38 +493,6 @@
             this.addTextureToDatabaseToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.addTextureToDatabaseToolStripMenuItem.Text = "Add texture to database...";
             this.addTextureToDatabaseToolStripMenuItem.Click += new System.EventHandler(this.addTextureToDatabaseToolStripMenuItem_Click);
-            // 
-            // nodeControl
-            // 
-            this.nodeControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nodeControl.Location = new System.Drawing.Point(3, 3);
-            this.nodeControl.MinimumSize = new System.Drawing.Size(310, 200);
-            this.nodeControl.Name = "nodeControl";
-            this.nodeControl.Size = new System.Drawing.Size(349, 200);
-            this.nodeControl.TabIndex = 0;
-            this.nodeControl.OnNodeChanged += new System.EventHandler(this.nodeControl_OnNodeChanged);
-            // 
-            // textureControl
-            // 
-            this.textureControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textureControl.Location = new System.Drawing.Point(0, 0);
-            this.textureControl.MinimumSize = new System.Drawing.Size(301, 266);
-            this.textureControl.Name = "textureControl";
-            this.textureControl.Size = new System.Drawing.Size(363, 266);
-            this.textureControl.TabIndex = 0;
-            this.textureControl.OnTextureChanged += new System.EventHandler(this.textureControl_OnTextureChanged);
-            // 
-            // view3D
-            // 
-            this.view3D.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.view3D.BackColor = System.Drawing.Color.Black;
-            this.view3D.Location = new System.Drawing.Point(3, 50);
-            this.view3D.Name = "view3D";
-            this.view3D.Size = new System.Drawing.Size(398, 447);
-            this.view3D.TabIndex = 0;
-            this.view3D.VSync = false;
             // 
             // ModelEditor
             // 

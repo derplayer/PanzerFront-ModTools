@@ -169,7 +169,17 @@ namespace PZFModelEditor
         private void listBox_Textures_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox_Textures.SelectedIndex >= m_model.Textures.Count) return;
-            textureControl.SetTexture(m_model.Textures[listBox_Textures.SelectedIndex]);
+
+            try
+            {
+                textureControl.SetTexture(m_model.Textures[listBox_Textures.SelectedIndex]);
+            }
+            catch (Exception)
+            {
+                textureControl.SetTexture(m_model.Textures[0]);
+                throw;
+            }
+            
         }
 
         private void treeView_MeshNodes_AfterSelect(object sender, TreeViewEventArgs e)
@@ -178,6 +188,7 @@ namespace PZFModelEditor
             if (node == null || node.Level == 0) return;
             view3D.SetModelNode((ModelNode)node.Tag, m_primitiveType);
             nodeControl.SetNode((ModelNode)node.Tag);
+            nodeControl.SetTexture(m_model.Textures.FirstOrDefault());
 
             //if (m_modelType == ModelType.MT5 && typeof(MT5Node).IsAssignableFrom(node.Tag.GetType()))
             //{
@@ -191,9 +202,18 @@ namespace PZFModelEditor
 
         private void nodeControl_OnNodeChanged(object sender, EventArgs e)
         {
-            TreeNode node = treeView_MeshNodes.SelectedNode;
-            if (node == null || node.Level == 0) return;
-            view3D.SetModelNode((ModelNode)node.Tag, m_primitiveType);
+            ModelNode node;
+            if (sender.GetType().Name == "NodeControl") {
+                node = nodeControl.GetNode();
+            }
+            else
+            {
+                TreeNode tnode = treeView_MeshNodes.SelectedNode;
+                if (tnode == null || tnode.Level == 0) return;
+                node = (ModelNode)tnode.Tag;
+            }
+            
+            view3D.SetModelNode(node, m_primitiveType);
         }
 
         private void textureControl_OnTextureChanged(object sender, EventArgs e)

@@ -15,6 +15,7 @@ namespace PZFModelEditor.Controls
     public partial class NodeControl : UserControl
     {
         private ModelNode m_node;
+        private Texture m_texture;
         private bool m_updateValues;
 
         public event EventHandler OnNodeChanged;
@@ -24,12 +25,22 @@ namespace PZFModelEditor.Controls
             InitializeComponent();
         }
 
+        public ModelNode GetNode()
+        {
+            return m_node;
+        }
+
         public void SetNode(ModelNode node)
         {
             m_node = node;
             UpdateValues();
         }
 
+        // Texture needs also to be hold in this element, because of export
+        public void SetTexture(Texture texture)
+        {
+            m_texture = texture;
+        }
 
         private void button_Export_Click(object sender, EventArgs e)
         {
@@ -37,22 +48,24 @@ namespace PZFModelEditor.Controls
             saveFileDialog.Filter = "Supported files|*.obj";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-
+                OBJ obj = new OBJ(m_node, m_texture);
+                obj.FilePath = saveFileDialog.FileName;
+                obj.Write(saveFileDialog.FileName);
             }
         }
 
         private void button_Import_Click(object sender, EventArgs e)
         {
-            if (!typeof(MT5Node).IsAssignableFrom(m_node.GetType())) return;
+            //if (!typeof(MT5Node).IsAssignableFrom(m_node.GetType())) return;
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Supported files|*.obj";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                MT5Node mt5Node = (MT5Node)m_node;
+                //MT5Node mt5Node = (MT5Node)m_node;
                 OBJ obj = new OBJ(openFileDialog.FileName);
-                mt5Node.MeshData = new MT5Mesh(obj.RootNode, mt5Node);
+                m_node = obj.RootNode;
                 OnNodeChanged(this, null);
             }
         }
