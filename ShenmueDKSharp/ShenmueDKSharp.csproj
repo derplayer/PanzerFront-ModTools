@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{68CA6FDA-E029-4247-9229-C3A75DFA9F8D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShenmueDKSharp</RootNamespace>
+    <AssemblyName>ShenmueDKSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AssimpNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=0d51b391f59f42a6, processorArchitecture=MSIL">
+      <HintPath>..\packages\AssimpNet.4.1.0\lib\net40\AssimpNet.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\IProgessable.cs" />
+    <Compile Include="Extensions\BinaryWriterExtensions.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Files\Audio\SND.cs" />
+    <Compile Include="Files\Audio\XWMA.cs" />
+    <Compile Include="Files\BaseFile.cs" />
+    <Compile Include="Files\Containers\AFS.cs" />
+    <Compile Include="Files\Containers\GZ.cs" />
+    <Compile Include="Files\Containers\IDX.cs" />
+    <Compile Include="Files\Containers\IPAC.cs" />
+    <Compile Include="Files\Containers\PKF.cs" />
+    <Compile Include="Files\Containers\PKS.cs" />
+    <Compile Include="Files\Containers\SPR.cs" />
+    <Compile Include="Files\Containers\TAC.cs" />
+    <Compile Include="Files\Containers\TAD.cs" />
+    <Compile Include="Files\FileHelper.cs" />
+    <Compile Include="Files\Images\BMP.cs" />
+    <Compile Include="Files\Images\JPEG.cs" />
+    <Compile Include="Files\Images\PNG.cs" />
+    <Compile Include="Files\Images\_DDS\BC6.cs" />
+    <Compile Include="Files\Images\_DDS\BC7.cs" />
+    <Compile Include="Files\Images\_DDS\DDSGeneral.cs" />
+    <Compile Include="Files\Images\_DDS\DDS_BlockHelpers.cs" />
+    <Compile Include="Files\Images\_DDS\DDS_Decoders.cs" />
+    <Compile Include="Files\Images\_DDS\DDS_Encoders.cs" />
+    <Compile Include="Files\Images\_DDS\DDS_FormatDetails.cs" />
+    <Compile Include="Files\Images\_DDS\DDS_Formats.cs" />
+    <Compile Include="Files\Images\_DDS\DDS_Header.cs" />
+    <Compile Include="Files\Images\_DDS\DX10_Helpers.cs" />
+    <Compile Include="Files\Images\_PVRT\PTMethods.cs" />
+    <Compile Include="Files\Images\_PVRT\PTStream.cs" />
+    <Compile Include="Files\Images\_PVRT\PvpPalette.cs" />
+    <Compile Include="Files\Images\_PVRT\PvpPaletteEncoder.cs" />
+    <Compile Include="Files\Images\_PVRT\PvrCompressionCodec.cs" />
+    <Compile Include="Files\Images\_PVRT\PvrDataCodec.cs" />
+    <Compile Include="Files\Images\_PVRT\PvrExceptions.cs" />
+    <Compile Include="Files\Images\_PVRT\PvrFormats.cs" />
+    <Compile Include="Files\Images\_PVRT\PvrPixelCodec.cs" />
+    <Compile Include="Files\Images\_PVRT\PvrTexture.cs" />
+    <Compile Include="Files\Images\_PVRT\PvrTextureEncoder.cs" />
+    <Compile Include="Files\Images\_PVRT\VectorQuantizer.cs" />
+    <Compile Include="Files\Images\_PVRT\WuQuantizer\Box.cs" />
+    <Compile Include="Files\Images\_PVRT\WuQuantizer\ColorData.cs" />
+    <Compile Include="Files\Images\_PVRT\WuQuantizer\CubeCut.cs" />
+    <Compile Include="Files\Images\_PVRT\WuQuantizer\IWuQuantizer.cs" />
+    <Compile Include="Files\Images\_PVRT\WuQuantizer\Lookup.cs" />
+    <Compile Include="Files\Images\_PVRT\WuQuantizer\LookupData.cs" />
+    <Compile Include="Files\Images\_PVRT\WuQuantizer\Pixel.cs" />
+    <Compile Include="Files\Images\_PVRT\WuQuantizer\QuantizationException.cs" />
+    <Compile Include="Files\Images\_PVRT\WuQuantizer\QuantizedPalette.cs" />
+    <Compile Include="Files\Images\_PVRT\WuQuantizer\WuQuantizer.cs" />
+    <Compile Include="Files\Images\_PVRT\WuQuantizer\WuQuantizerBase.cs" />
+    <Compile Include="Files\Misc\AUTH.cs" />
+    <Compile Include="Files\Models\FBX.cs" />
+    <Compile Include="Files\Models\FBXD3T.cs" />
+    <Compile Include="Files\Models\NTD.cs" />
+    <Compile Include="Files\Models\OBJ.cs" />
+    <Compile Include="Files\Models\_MT5\PTRL.cs" />
+    <Compile Include="Files\Models\_MT5\TEXL.cs" />
+    <Compile Include="Files\Models\_OBJ\MTL.cs" />
+    <Compile Include="Files\Tokens\ATTR.cs" />
+    <Compile Include="Files\Tokens\BaseToken.cs" />
+    <Compile Include="Files\Tokens\CHRD.cs" />
+    <Compile Include="Files\Tokens\CHRM.cs" />
+    <Compile Include="Files\Misc\CHRT.cs" />
+    <Compile Include="Files\Misc\DYNM.cs" />
+    <Compile Include="Files\Misc\SRL.cs" />
+    <Compile Include="Files\Tokens\CMPS.cs" />
+    <Compile Include="Files\Tokens\COLS.cs" />
+    <Compile Include="Files\Tokens\DIRT.cs" />
+    <Compile Include="Files\Tokens\DOOR.cs" />
+    <Compile Include="Files\Tokens\DummyToken.cs" />
+    <Compile Include="Files\Tokens\END.cs" />
+    <Compile Include="Files\Tokens\EVFD.cs" />
+    <Compile Include="Files\Tokens\FOG.cs" />
+    <Compile Include="Files\Tokens\LSCN.cs" />
+    <Compile Include="Files\Tokens\MAPR.cs" />
+    <Compile Include="Files\Tokens\MAPT.cs" />
+    <Compile Include="Files\Tokens\REGD.cs" />
+    <Compile Include="Files\Tokens\SCN3.cs" />
+    <Compile Include="Files\Tokens\SCOF.cs" />
+    <Compile Include="Files\Tokens\SCRL.cs" />
+    <Compile Include="Files\Tokens\SNDD.cs" />
+    <Compile Include="Files\Tokens\SNDP.cs" />
+    <Compile Include="Files\Tokens\TABL.cs" />
+    <Compile Include="Files\Misc\WDAT.cs" />
+    <Compile Include="Files\Tokens\ECAM.cs" />
+    <Compile Include="Files\Tokens\FLDD.cs" />
+    <Compile Include="Files\Misc\IWAD.cs" />
+    <Compile Include="Files\Tokens\LGHT.cs" />
+    <Compile Include="Files\Misc\MAPINFO.cs" />
+    <Compile Include="Files\Subtitles\SCN4.cs" />
+    <Compile Include="Files\Tokens\TokenHelper.cs" />
+    <Compile Include="Files\Tokens\WTHR.cs" />
+    <Compile Include="Files\Tokens\_CHRD\CHRS.cs" />
+    <Compile Include="Files\Tokens\_CHRD\STRG.cs" />
+    <Compile Include="Files\Tokens\_CHRD\_CHRS\CMDM.cs" />
+    <Compile Include="Files\Tokens\_FLDD\PROP.cs" />
+    <Compile Include="Files\Misc\SCNF.cs" />
+    <Compile Include="Files\Misc\SMAP.cs" />
+    <Compile Include="Files\Misc\TEXN.cs" />
+    <Compile Include="Files\Models\_MT5\MT5Mesh.cs" />
+    <Compile Include="Files\Models\_MT5\TEXD.cs" />
+    <Compile Include="Files\Tokens\_SCEX\AUVW.cs" />
+    <Compile Include="Files\Tokens\_SCEX\TRCK.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\DOOR.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\EYES.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\FACX.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\FADE.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\FCLP.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\FOBJ.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\HADT.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\HAID.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\HAND.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\LGHC.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\LGHS.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\MBTK.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_AUVW\RFBD.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_TRCK\ACAM.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_TRCK\AMOV.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_TRCK\ASEQ.cs" />
+    <Compile Include="Files\Tokens\_SCEX\_TRCK\ASTR.cs" />
+    <Compile Include="Files\Tokens\_SNDP\SNDA.cs" />
+    <Compile Include="Files\Tokens\_SNDP\SNDD.cs" />
+    <Compile Include="Files\Tokens\_SNDP\SNDM.cs" />
+    <Compile Include="Files\Tokens\_SNDP\SNDR.cs" />
+    <Compile Include="Files\Tokens\_SNDP\_SNDM\SBTS.cs" />
+    <Compile Include="Files\Tokens\_SNDP\_SNDM\SMAP.cs" />
+    <Compile Include="Files\UnknownFile.cs" />
+    <Compile Include="Graphics\Color4.cs" />
+    <Compile Include="Files\Images\BaseImage.cs" />
+    <Compile Include="Files\Images\DDS.cs" />
+    <Compile Include="Files\Images\PVRT.cs" />
+    <Compile Include="Math\BezierCurve.cs" />
+    <Compile Include="Math\BezierCurveCubic.cs" />
+    <Compile Include="Math\BezierCurveQuadric.cs" />
+    <Compile Include="Math\Box2.cs" />
+    <Compile Include="Math\Box2d.cs" />
+    <Compile Include="Math\Half.cs" />
+    <Compile Include="Math\MathHelper.cs" />
+    <Compile Include="Math\Matrix2.cs" />
+    <Compile Include="Math\Matrix2d.cs" />
+    <Compile Include="Math\Matrix2x3.cs" />
+    <Compile Include="Math\Matrix2x3d.cs" />
+    <Compile Include="Math\Matrix2x4.cs" />
+    <Compile Include="Math\Matrix2x4d.cs" />
+    <Compile Include="Math\Matrix3.cs" />
+    <Compile Include="Math\Matrix3d.cs" />
+    <Compile Include="Math\Matrix3x2.cs" />
+    <Compile Include="Math\Matrix3x2d.cs" />
+    <Compile Include="Math\Matrix3x4.cs" />
+    <Compile Include="Math\Matrix3x4d.cs" />
+    <Compile Include="Math\Matrix4.cs" />
+    <Compile Include="Math\Matrix4d.cs" />
+    <Compile Include="Math\Matrix4x2.cs" />
+    <Compile Include="Math\Matrix4x2d.cs" />
+    <Compile Include="Math\Matrix4x3.cs" />
+    <Compile Include="Math\Matrix4x3d.cs" />
+    <Compile Include="Math\Point.cs" />
+    <Compile Include="Math\Quaternion.cs" />
+    <Compile Include="Math\Quaterniond.cs" />
+    <Compile Include="Math\Rectangle.cs" />
+    <Compile Include="Math\Size.cs" />
+    <Compile Include="Math\Vector2.cs" />
+    <Compile Include="Math\Vector2d.cs" />
+    <Compile Include="Math\Vector2h.cs" />
+    <Compile Include="Math\Vector3.cs" />
+    <Compile Include="Math\Vector3d.cs" />
+    <Compile Include="Math\Vector3h.cs" />
+    <Compile Include="Math\Vector4.cs" />
+    <Compile Include="Math\Vector4d.cs" />
+    <Compile Include="Math\Vector4h.cs" />
+    <Compile Include="Files\Models\BaseModel.cs" />
+    <Compile Include="Files\Models\MT5.cs" />
+    <Compile Include="Files\Models\MT7.cs" />
+    <Compile Include="Files\Models\_MT7\CLSG.cs" />
+    <Compile Include="Files\Models\_MT7\FACE.cs" />
+    <Compile Include="Files\Models\_MT7\MDCX.cs" />
+    <Compile Include="Files\Models\_MT7\MDLX.cs" />
+    <Compile Include="Files\Models\_MT7\MDOX.cs" />
+    <Compile Include="Files\Models\_MT7\MDPX.cs" />
+    <Compile Include="Files\Models\_MT7\TXT7.cs" />
+    <Compile Include="Files\Models\_MT7\XB01.cs" />
+    <Compile Include="Files\Misc\CSV.cs" />
+    <Compile Include="Files\Misc\MOTN.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Files\Subtitles\FON.cs" />
+    <Compile Include="Files\Subtitles\FONTDEF.cs" />
+    <Compile Include="Files\Subtitles\GLYPHS.cs" />
+    <Compile Include="Files\Subtitles\SRF.cs" />
+    <Compile Include="Files\Subtitles\SUB.cs" />
+    <Compile Include="Extensions\BinaryReaderExtensions.cs" />
+    <Compile Include="Structs\Scene.cs" />
+    <Compile Include="Structs\TextureID.cs" />
+    <Compile Include="Utils\Exceptions.cs" />
+    <Compile Include="Utils\FilenameDatabase.cs" />
+    <Compile Include="Utils\Helper.cs" />
+    <Compile Include="Extensions\MathExtensions.cs" />
+    <Compile Include="Utils\MurmurHash2.cs" />
+    <Compile Include="Utils\NodeParser.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Utils\SceneManager.cs" />
+    <Compile Include="Utils\SimpleJSON.cs" />
+    <Compile Include="Utils\TextureDatabase.cs" />
+    <Compile Include="Utils\VirtualFileSystem.cs" />
+    <Compile Include="Utils\Wulinshu.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\DXT1_CodecTest.dds" />
+    <None Include="Resources\FilenameDatabase.gz" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AssimpNet.4.1.0\build\AssimpNet.targets" Condition="Exists('..\packages\AssimpNet.4.1.0\build\AssimpNet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\AssimpNet.4.1.0\build\AssimpNet.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AssimpNet.4.1.0\build\AssimpNet.targets'))" />
+  </Target>
+</Project>

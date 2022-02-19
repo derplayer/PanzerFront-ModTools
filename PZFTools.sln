@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PZFMapEditor", "PZFMapEditor\PZFMapEditor.csproj", "{4AA205FB-A29A-4974-814D-E825A83BCBE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PZFModelEditor", "PZFModelEditor\PZFModelEditor.csproj", "{5F06A6B9-D509-4039-940C-8BCC7BB76646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShenmueDKSharp", "ShenmueDKSharp\ShenmueDKSharp.csproj", "{68CA6FDA-E029-4247-9229-C3A75DFA9F8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AA205FB-A29A-4974-814D-E825A83BCBE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AA205FB-A29A-4974-814D-E825A83BCBE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AA205FB-A29A-4974-814D-E825A83BCBE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AA205FB-A29A-4974-814D-E825A83BCBE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F06A6B9-D509-4039-940C-8BCC7BB76646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F06A6B9-D509-4039-940C-8BCC7BB76646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F06A6B9-D509-4039-940C-8BCC7BB76646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F06A6B9-D509-4039-940C-8BCC7BB76646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68CA6FDA-E029-4247-9229-C3A75DFA9F8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68CA6FDA-E029-4247-9229-C3A75DFA9F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68CA6FDA-E029-4247-9229-C3A75DFA9F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68CA6FDA-E029-4247-9229-C3A75DFA9F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD20555F-C0F7-45E3-A61F-E0A1F5B2DD92}
+	EndGlobalSection
+EndGlobal
