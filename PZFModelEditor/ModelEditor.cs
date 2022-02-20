@@ -97,7 +97,7 @@ namespace PZFModelEditor
                 listBox_Textures.Items.Clear();
 
                 m_model.RootNode.GenerateTree(null);
-                TreeNode treeNode = new TreeNode(openFileDialog.FileName);
+                TreeNode treeNode = new TreeNode(Path.GetFileName(openFileDialog.FileName));
                 GenerateTree(treeNode, m_model.RootNode);
                 treeView_MeshNodes.Nodes.Add(treeNode);
 
@@ -200,6 +200,18 @@ namespace PZFModelEditor
             //}
         }
 
+        private TreeNode GetNodeByIndexPath(TreeView treeView, int[] indexPath)
+        {
+            var nodes = treeView.Nodes;
+            TreeNode node = null;
+            for (int i = 0; i < indexPath.Length; i++)
+            {
+                node = nodes[indexPath[i]];
+                nodes = node.Nodes;
+            }
+            return node;
+        }
+
         private void nodeControl_OnNodeChanged(object sender, EventArgs e)
         {
             ModelNode node;
@@ -212,8 +224,31 @@ namespace PZFModelEditor
                 if (tnode == null || tnode.Level == 0) return;
                 node = (ModelNode)tnode.Tag;
             }
-            
+
             view3D.SetModelNode(node, m_primitiveType);
+
+            // model update
+            if (sender.GetType().Name == "NodeControl")
+            {
+                int oldIndex = treeView_MeshNodes.SelectedNode.Index;
+                m_model.RootNode.Children[oldIndex] = node;
+
+                treeView_MeshNodes.Nodes.Clear();
+                listBox_Textures.Items.Clear();
+                
+                TreeNode treeNode = new TreeNode(Path.GetFileName(m_model.FilePath));
+                GenerateTree(treeNode, m_model.RootNode);
+                treeView_MeshNodes.Nodes.Add(treeNode);
+
+                treeView_MeshNodes.SelectedNode = GetNodeByIndexPath(treeView_MeshNodes, new int[] { 0, 0, oldIndex });
+
+                foreach (Texture texture in m_model.Textures)
+                {
+                    if (texture == null) continue;
+                    listBox_Textures.Items.Add(texture);
+                }
+            }
+
         }
 
         private void textureControl_OnTextureChanged(object sender, EventArgs e)
@@ -293,6 +328,11 @@ namespace PZFModelEditor
                     Console.WriteLine("ID: {0}, Model: {1}, Position: {2}", node.CHRTID, node.ModelName, node.Position);
                 }
             }
+        }
+
+        private void nodeControl_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
