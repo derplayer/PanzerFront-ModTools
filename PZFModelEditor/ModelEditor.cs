@@ -283,13 +283,31 @@ namespace PZFModelEditor
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Wavefront OBJ (*.obj)|*.obj";
+            saveFileDialog.Filter = "Wavefront OBJ (*.obj)|*.obj|NTD Model (*.ntd)|*.ntd";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                OBJ obj = new OBJ(m_model);
-                obj.FilePath = saveFileDialog.FileName;
-                obj.Write(saveFileDialog.FileName);
+                var extension = Path.GetExtension(saveFileDialog.FileName);
+
+                switch (extension.ToLower())
+                {
+                    case ".ntd":
+                        NTD ntd = new NTD(m_model);
+                        ntd.FilePath = saveFileDialog.FileName;
+                        ntd.UnknownParam = 0; //??
+                        ntd.PartCount = (ushort)m_model.RootNode.Children.Count;
+                        //ntd.RootNode = m_model.RootNode;
+
+                        ntd.Write(saveFileDialog.FileName);
+                        break;
+                    case ".obj":
+                        OBJ obj = new OBJ(m_model);
+                        obj.FilePath = saveFileDialog.FileName;
+                        obj.Write(saveFileDialog.FileName);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(extension);
+                }
             }
         }
 
